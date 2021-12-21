@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-request-headers
+  labels:
+    app: log-request-headers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-request-headers
+  template:
+    metadata:
+      labels:
+        app: log-request-headers
+    spec:
+      containers:
+        - name: aiohttp
+          image: magickatt/log-request-headers:1.0.0
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 16Mi
+              cpu: 20m
+            limits:
+              memory: 32Mi
+              cpu: 40m
